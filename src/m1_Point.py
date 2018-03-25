@@ -68,20 +68,22 @@ class Point(object):
         self.x = self.x + dx
         self.y = self.y + dy
 
-    def get_distance_from(self, clone):
-        return math.sqrt((self.x - clone.x)**2 + (self.y - clone.y)**2)
+    def get_distance_from(self, p2):
+        return math.sqrt((self.x - p2.x)**2 + (self.y - p2.y)**2)
 
 
     # def get_distance_from_start(self):
-    #
-    #
+    #     start_point = self
+    #     return self.get_distance_from(start_point)
+
     # def get_distance_traveled(self):
     #
     #
     # def closer_to(self):
     #
     #
-    # def halfway_to(self):
+    def halfway_to(self, p2):
+        return Point((self.x + p2.x) / 2, (self.y + p2.y) / 2)
 
 
 
@@ -810,6 +812,35 @@ def run_test_get_distance_from_start():
     print('of the Point class.')
     print('-----------------------------------------------------------')
 
+    # p1 = Point(20, 30)
+    # p1.move_to(111, 222)
+    # p1.move_by(10, 20)
+    # p1.move_to(0, 0)
+    # p1.move_to(21, 31)
+    # print()
+    # print('p1 from start to (21, 31), should be about 1.414')
+    # print('Actually is:', p1.get_distance_from_start())
+    #
+    # p1.move_by(29, 39)
+    # print()
+    # print('p1 from start to (50, 70), should be about 50.0')
+    # print('Actually is:', p1.get_distance_from_start())
+    #
+    # p2 = Point(1, 1)
+    # print()
+    # print('p2 from start to (1, 1), should be about 0.0')
+    # print('Actually is:', p2.get_distance_from_start())
+    #
+    # p2.move_to(11, 1)
+    # print()
+    # print('p2 from start to (11, 1), should be about 10.0')
+    # print('Actually is:', p2.get_distance_from_start())
+    #
+    # p2.move_to(999, 999)
+    # p2.move_to(1, 1)
+    # print()
+    # print('p2 from start to (1, 1), should be about 0.0')
+    # print('Actually is:', p2.get_distance_from_start())
 
 def run_test_get_distance_traveled():
     """
@@ -976,6 +1007,31 @@ def run_test_halfway_to():
     print('Testing the   halfway_to   method of the Point class.')
     print('-----------------------------------------------------------')
 
+    p1 = Point(10, 20)
+    p2 = Point(30, 100)
+
+    print()
+    print('Should be: Point(20.0, 60.0)')
+    print('Actual is:', p1.halfway_to(p2))
+    print('Should be: Point(20.0, 60.0)')
+    print('Actual is:', p2.halfway_to(p1))
+
+    print()
+    print('Should be: Point(10.0, 20.0)')
+    print('Actual is:', p1.halfway_to(p1))
+
+    p3 = Point(-10, 20)
+    p4 = Point(30, -100)
+
+    print()
+    print('Should be: Point(10.0, -40.0)')
+    print('Actual is:', p3.halfway_to(p4))
+    print('Should be: Point(10.0, -40.0)')
+    print('Actual is:', p3.halfway_to(p4))
+
+    print()
+    print('Should be: Point(-10.0, 20.0)')
+    print('Actual is:', p3.halfway_to(p3))
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
